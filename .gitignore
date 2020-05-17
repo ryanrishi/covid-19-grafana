@@ -1,0 +1,5 @@
+influxdb/data/*
+!influxdb/data/.gitkeep
+
+grafana/data/*
+!grafana/data/.gitkeep
