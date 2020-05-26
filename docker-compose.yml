@@ -10,14 +10,6 @@ influxdb:
   volumes:
     - ./influxdb/data:/var/lib/influxdb
 
-telegraf:
-  image: telegraf:latest
-  container_name: telegraf
-  links:
-    - influxdb
-  volumes:
-    - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
-
 grafana:
   image: grafana/grafana:latest
   container_name: grafana
