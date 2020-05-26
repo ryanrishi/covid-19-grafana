@@ -30,3 +30,5 @@ grafana:
     - influxdb
   volumes:
     - ./grafana/data:/var/lib/grafana
+    - ./grafana/provisioning:/etc/grafana/provisioning
+    - ./grafana/grafana.ini:/etc/grafana/grafana.ini
