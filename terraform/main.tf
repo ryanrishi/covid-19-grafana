@@ -1,13 +1,13 @@
 provider "aws" {
-  region = var.aws_region
+  region  = var.aws_region
   profile = var.aws_profile
 }
 
 terraform {
   backend "s3" {
-    bucket  = "ryanrishi-terraform-test"
-    key     = "covid-19-grafana/terraform.tfstate"
-    region  = "us-east-1"
+    bucket = "ryanrishi-terraform-test"
+    key    = "covid-19-grafana/terraform.tfstate"
+    region = "us-east-1"
   }
 }
 
@@ -27,16 +27,16 @@ resource "aws_security_group" "security_group" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [ "0.0.0.0/0" ]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = [ "0.0.0.0/0" ]
+    cidr_blocks = ["0.0.0.0/0"]
   }
-  
+
   # Allow outgoing traffic to anywhere
   egress {
     from_port   = 0
@@ -54,15 +54,14 @@ resource "aws_key_pair" "key_pair" {
 
 resource "aws_instance" "web" {
   instance_type = var.aws_instance_type
-  ami = lookup(var.aws_amis, var.aws_region)
+  ami           = lookup(var.aws_amis, var.aws_region)
 
   key_name = aws_key_pair.key_pair.key_name
-  security_groups = [
+  vpc_security_group_ids = [
     aws_security_group.security_group.id
   ]
-  
-  subnet_id = aws_subnet.subnet.id
 
+  subnet_id = aws_subnet.subnet.id
 
   # provisioner "file" {
   #   source = "files/"
