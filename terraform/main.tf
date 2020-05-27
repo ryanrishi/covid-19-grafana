@@ -63,26 +63,12 @@ resource "aws_instance" "web" {
 
   subnet_id = aws_subnet.subnet.id
 
-  # provisioner "file" {
-  #   source = "files/"
-  #   destination = "/tmp/"
-  # }
-
-  provisioner "remote-exec" {
-    inline = [
-      "sudo yum install -y docker",
-      "sudo service docker start",
-      "sudo docker pull nginx",
-      "sudo docker run -d -p 80:80 -v /tmp:/usr/share/nginx/html --name nginx nginx",
-      "sudo sed -iE \"s/{{ hostname }}/`hostname`/g\" /tmp/index.html",
-      "sudo sed -iE \"s/{{ container_name }}/nginx/g\" /tmp/index.html"
-    ]
-  }
+  user_data = file("./files/init.sh")
 }
 
 resource "aws_eip" "elastic_ip" {
-  instance  = aws_instance.web.id
-  vpc       = true
+  instance = aws_instance.web.id
+  vpc      = true
 }
 
 resource "aws_internet_gateway" "internet_gateway" {
