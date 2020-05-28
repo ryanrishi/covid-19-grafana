@@ -267,7 +267,7 @@
       "yaxes": [
         {
           "format": "short",
-          "label": "Number of Cases",
+          "label": "Number of Deaths",
           "logBase": 1,
           "max": null,
           "min": null,
