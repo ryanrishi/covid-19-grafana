@@ -19,6 +19,8 @@ cd covid-19-grafana
 GF_SERVER_DOMAIN=stage.ryanrishi.com \
 GF_SERVER_SERVE_FROM_SUB_PATH=true \
 GF_SERVER_ROOT_URL=https://stage.ryanrishi.com/covid-19-dashboard/ \
+GF_SECURITY_ADMIN_USER=${grafana_admin_user} \
+GF_SECURITY_ADMIN_PASSWORD=${grafana_admin_password} \
 docker-compose up -d
 
 # Download latest COVID-19 data
@@ -31,3 +33,16 @@ pip install --user pytz influxdb
 
 # Import CSV into InfluxDB
 python csv-to-influxdb.py -i us-counties.csv --dbname covid-19 --create --timecolumn date --timeformat '%Y-%m-%d' --tagcolumns county,state,fips --fieldcolumns cases,deaths
+
+# Make COVID-19 by State default dashboard
+curl 'http://localhost:3000/api/user/stars/dashboard/1' \
+  -u "${grafana_admin_user}:${grafana_admin_password}"
+  -XPOST \
+  -H 'x-grafana-org-id: 1' \
+
+curl 'http://localhost:3000/api/org/preferences' \
+  -u "${grafana_admin_user}:${grafana_admin_password}"
+  -XPUT \
+  -H 'x-grafana-org-id: 1' \
+  -H 'content-type: application/json' \
+  --data '{"homeDashboardId":1,"theme":"","timezone":""}' \

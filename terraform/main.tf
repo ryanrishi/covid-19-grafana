@@ -64,7 +64,14 @@ resource "aws_instance" "web" {
 
   subnet_id = aws_subnet.subnet.id
 
-  user_data = file("./files/init.sh")
+  user_data = templatefile("./templates/init.sh.tmpl", {
+    grafana_admin_user     = var.grafana_admin_user
+    grafana_admin_password = var.grafana_admin_password
+  })
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_eip" "elastic_ip" {

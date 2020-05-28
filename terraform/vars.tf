@@ -23,3 +23,7 @@ variable "aws_key_name" {
 variable "aws_public_key" {
   default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC0Ru52tplYR3TrDVkLprihVnRApZDYpSbSTjQGn7AWYgJm+... me@example.com"
 }
+
+variable "grafana_admin_user" {}
+
+variable "grafana_admin_password" {}
