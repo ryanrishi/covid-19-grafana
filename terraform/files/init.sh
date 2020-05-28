@@ -15,3 +15,8 @@ sudo yum install -y git
 cd /opt
 git clone https://github.com/ryanrishi/covid-19-grafana.git
 cd covid-19-grafana
+
+GF_SERVER_DOMAIN=stage.ryanrishi.com \
+GF_SERVER_SERVE_FROM_SUB_PATH=true \
+GF_SERVER_ROOT_URL=https://stage.ryanrishi.com/covid-19-dashboard/ \
+docker-compose up -d
