@@ -15,9 +15,391 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1590641986163,
+  "iteration": 1590641986167,
   "links": [],
   "panels": [
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(255, 255, 255)",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 11,
+      "interval": "1d",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "alias": "$tag_state",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "value",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(\"cases\") FROM \"value\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cases"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total Cases in US",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgb(255, 255, 255)",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 8,
+      "interval": "1d",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "alias": "$tag_state",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "value",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(\"deaths\") FROM \"value\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "deaths"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total Deaths in US",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 5
+              },
+              {
+                "color": "orange",
+                "value": 25
+              },
+              {
+                "color": "red",
+                "value": 99
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 10,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "alias": "$tag_state",
+          "groupBy": [
+            {
+              "params": [
+                "1d"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "state"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "value",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "cases"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "state",
+              "operator": "=~",
+              "value": "/^$state$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Cases by State",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 5
+              },
+              {
+                "color": "orange",
+                "value": 25
+              },
+              {
+                "color": "red",
+                "value": 99
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        }
+      },
+      "pluginVersion": "7.0.1",
+      "targets": [
+        {
+          "alias": "$tag_state",
+          "groupBy": [
+            {
+              "params": [
+                "1d"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "state"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "value",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "deaths"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "state",
+              "operator": "=~",
+              "value": "/^$state$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Deaths by State",
+      "type": "stat"
+    },
     {
       "aliasColors": {},
       "bars": false,
@@ -36,7 +418,7 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 0
+        "y": 20
       },
       "hiddenSeries": false,
       "id": 5,
@@ -107,7 +489,13 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "state",
+              "operator": "=~",
+              "value": "/^$state$/"
+            }
+          ]
         }
       ],
       "thresholds": [],
@@ -161,7 +549,21 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
         },
         "overrides": []
       },
@@ -171,28 +573,27 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 0
+        "y": 20
       },
       "hiddenSeries": false,
-      "id": 6,
+      "id": 9,
       "legend": {
-        "alignAsTable": true,
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
-        "rightSide": false,
-        "show": false,
+        "show": true,
         "total": false,
         "values": false
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "options": {
         "dataLinks": []
       },
       "percentage": false,
+      "pluginVersion": "7.0.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -206,7 +607,7 @@
           "groupBy": [
             {
               "params": [
-                "$__interval"
+                "1d"
               ],
               "type": "time"
             },
@@ -242,7 +643,13 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "state",
+              "operator": "=~",
+              "value": "/^$state$/"
+            }
+          ]
         }
       ],
       "thresholds": [],
@@ -252,7 +659,7 @@
       "title": "Deaths by State",
       "tooltip": {
         "shared": true,
-        "sort": 2,
+        "sort": 0,
         "value_type": "individual"
       },
       "type": "graph",
@@ -265,7 +672,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:231",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -274,7 +680,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:232",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -306,7 +711,7 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 12
+        "y": 32
       },
       "hiddenSeries": false,
       "id": 2,
@@ -446,7 +851,7 @@
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 12
+        "y": 32
       },
       "hiddenSeries": false,
       "id": 3,
@@ -578,6 +983,7 @@
         "allValue": null,
         "current": {
           "selected": true,
+          "tags": [],
           "text": "All",
           "value": [
             "$__all"
