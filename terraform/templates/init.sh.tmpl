@@ -46,13 +46,13 @@ python csv-to-influxdb.py -i us-counties.csv --dbname covid-19 --create --timeco
 
 # Make COVID-19 by State default dashboard
 curl 'http://localhost:3000/api/user/stars/dashboard/1' \
-  -u "${grafana_admin_user}:${grafana_admin_password}"
+  -u "${grafana_admin_user}:${grafana_admin_password}" \
   -XPOST \
-  -H 'x-grafana-org-id: 1' \
+  -H 'x-grafana-org-id: 1'
 
 curl 'http://localhost:3000/api/org/preferences' \
-  -u "${grafana_admin_user}:${grafana_admin_password}"
+  -u "${grafana_admin_user}:${grafana_admin_password}" \
   -XPUT \
   -H 'x-grafana-org-id: 1' \
   -H 'content-type: application/json' \
-  --data '{"homeDashboardId":1,"theme":"","timezone":""}' \
+  --data '{"homeDashboardId":1,"theme":"","timezone":""}'
