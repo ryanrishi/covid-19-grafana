@@ -23,6 +23,16 @@ GF_SECURITY_ADMIN_USER=${grafana_admin_user} \
 GF_SECURITY_ADMIN_PASSWORD=${grafana_admin_password} \
 docker-compose up -d
 
+# setting $GF_SECURITY_ADMIN_PASSWORD doesn't work in a Docker container
+# use grafana-cli to reset admin password
+# there's gotta be a better way to wait for Grafana to init - maybe `docker inspect -f {{State.Running}} grafana`?
+# bandaid around "database locked" error
+sleep 1
+
+# workaround for "the input device is not a TTY"
+# https://github.com/docker/compose/issues/5696
+COMPOSE_INTERACTIVE_NO_CLI=1 docker-compose exec -T grafana grafana-cli admin reset-admin-password ${grafana_admin_password}
+
 # Download latest COVID-19 data
 cd /tmp
 curl https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv -o us-counties.csv
