@@ -27,3 +27,5 @@ variable "aws_public_key" {
 variable "grafana_admin_user" {}
 
 variable "grafana_admin_password" {}
+
+variable "grafana_server_domain" {}
