@@ -13,7 +13,7 @@ variable "aws_amis" {
 }
 
 variable "aws_instance_type" {
-  default = "t3.micro"
+  default = "t3.small"
 }
 
 variable "aws_key_name" {
