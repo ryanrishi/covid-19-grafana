@@ -97,6 +97,6 @@ resource "aws_route_table_association" "subnet_association" {
   route_table_id = aws_route_table.route_table.id
 }
 
-output "public_ip" {
-  value = aws_eip.elastic_ip.public_ip
+output "public_dns" {
+  value = aws_eip.elastic_ip.public_dns
 }
