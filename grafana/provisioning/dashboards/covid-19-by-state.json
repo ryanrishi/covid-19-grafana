@@ -332,6 +332,7 @@
       },
       "hiddenSeries": false,
       "id": 5,
+      "interval": "1d",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -487,6 +488,7 @@
       },
       "hiddenSeries": false,
       "id": 9,
+      "interval": "1d",
       "legend": {
         "avg": false,
         "current": false,
@@ -517,7 +519,7 @@
           "groupBy": [
             {
               "params": [
-                "1d"
+                "$__interval"
               ],
               "type": "time"
             },
@@ -625,7 +627,7 @@
       },
       "hiddenSeries": false,
       "id": 2,
-      "interval": "6h",
+      "interval": "1d",
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -765,7 +767,7 @@
       },
       "hiddenSeries": false,
       "id": 3,
-      "interval": "6h",
+      "interval": "1d",
       "legend": {
         "alignAsTable": true,
         "avg": false,
