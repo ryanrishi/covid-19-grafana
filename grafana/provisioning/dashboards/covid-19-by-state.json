@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1590641986167,
+  "iteration": 1590961236084,
   "links": [],
   "panels": [
     {
@@ -189,7 +189,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "-- Dashboard --",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -240,53 +240,8 @@
       "pluginVersion": "7.0.1",
       "targets": [
         {
-          "alias": "$tag_state",
-          "groupBy": [
-            {
-              "params": [
-                "1d"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "state"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "value",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "cases"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "state",
-              "operator": "=~",
-              "value": "/^$state$/"
-            }
-          ]
+          "panelId": 5,
+          "refId": "A"
         }
       ],
       "timeFrom": null,
@@ -295,7 +250,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "-- Dashboard --",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -346,53 +301,8 @@
       "pluginVersion": "7.0.1",
       "targets": [
         {
-          "alias": "$tag_state",
-          "groupBy": [
-            {
-              "params": [
-                "1d"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "state"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "value",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "deaths"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "state",
-              "operator": "=~",
-              "value": "/^$state$/"
-            }
-          ]
+          "panelId": 9,
+          "refId": "A"
         }
       ],
       "timeFrom": null,
@@ -1031,5 +941,5 @@
   "timezone": "",
   "title": "COVID-19 by State",
   "uid": "NJZZEfgGk",
-  "version": 1
+  "version": 5
 }
