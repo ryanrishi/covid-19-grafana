@@ -6,6 +6,17 @@ variable "aws_profile" {
   default = "ryanrishi"
 }
 
+variable "aws_vpc_cidr" {
+  default = "10.0.0.0/16"
+}
+
+variable "aws_subnet_cidr_block" {
+  default = {
+    production = "10.0.1.0/24"
+    staging    = "10.0.2.0/24"
+  }
+}
+
 variable "aws_amis" {
   default = {
     us-east-1 = "ami-0aee8ced190c05726"

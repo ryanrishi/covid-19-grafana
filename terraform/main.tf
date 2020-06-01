@@ -12,13 +12,13 @@ terraform {
 }
 
 resource "aws_vpc" "vpc" {
-  cidr_block           = "10.0.0.0/16"
+  cidr_block           = var.aws_vpc_cidr
   enable_dns_hostnames = true
 }
 
 resource "aws_subnet" "subnet" {
   vpc_id     = aws_vpc.vpc.id
-  cidr_block = cidrsubnet(aws_vpc.vpc.cidr_block, 3, 1)
+  cidr_block = lookup(var.aws_subnet_cidr_block, terraform.workspace)
 }
 
 resource "aws_security_group" "security_group" {
@@ -67,6 +67,7 @@ resource "aws_instance" "web" {
   user_data = templatefile("./templates/init.sh.tmpl", {
     grafana_admin_user     = var.grafana_admin_user
     grafana_admin_password = var.grafana_admin_password
+    grafana_server_domain  = var.grafana_server_domain
   })
 
   lifecycle {
