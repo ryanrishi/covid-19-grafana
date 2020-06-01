@@ -3,7 +3,7 @@ covid-19-grafana
 
 ![Dashboard](img/dashboard.png)
 
-There are [many](https://blog.mapbox.com/notable-maps-visualizing-covid-19-and-surrounding-impacts-951724cc4bd8) [great](https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html) [visualizations](https://public.tableau.com/en-us/s/covid-19-viz-gallery) around COVID-19. I wanted to contribute a tool that enables people to visualize the impact of COVID-19 at a state-by-state level.
+There are many great visualizations ([Mapbox](https://blog.mapbox.com/notable-maps-visualizing-covid-19-and-surrounding-impacts-951724cc4bd8), [New York Times](https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html), [Tableau](https://public.tableau.com/en-us/s/covid-19-viz-gallery)) around COVID-19. I wanted to contribute a tool that enables people to visualize the impact of COVID-19 at a state-by-state level.
 
 Data is pulled from [New York Times Coronavirus (Covid-19) Data in the United States](https://github.com/nytimes/covid-19-data). This data is imported into InfluxDB and visualized in Grafana, both running in Docker on EC2.
 
@@ -13,6 +13,7 @@ Contributions are welcome. Here are some features/improvements:
 - **Data normalization** - there are lots of factors at play (testing, reporting, suspected vs. confirmed cases and deaths)
 - **Map** - NY Times data includes FIPS, which can be used to relate this data to a map, such as the [worldmap panel](https://grafana.com/grafana/plugins/grafana-worldmap-panel/installation) for Grafana
 - **Auto-update data** - NY Times updates every day. Could either add cron to Cloudinit script to pull a few times a day, or use something like Zapier to tell EC2 instance to pull new data
+- **InfluxDB tuning** - this is running on a `t3.small` instance. Simultaneous queries will sometimes cause OOM. InfluxDB will restart unless explicitly stopped, but some people may see "No data" in the dashboard until they refresh.
 
 # Running it locally
 - `docker-compose up` - Start InfluxDB and Grafana
