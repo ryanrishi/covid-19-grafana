@@ -1,6 +1,9 @@
 covid-19-grafana
 ===
 
+# ⚠️ Deprecation Notice
+I've stopped hosting this site. You can still run it locally (see below).
+
 ![Dashboard](img/dashboard.png)
 
 There are many great visualizations ([Mapbox](https://blog.mapbox.com/notable-maps-visualizing-covid-19-and-surrounding-impacts-951724cc4bd8), [New York Times](https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html), [Tableau](https://public.tableau.com/en-us/s/covid-19-viz-gallery)) around COVID-19. I wanted to contribute a tool that enables people to visualize the impact of COVID-19 at a state-by-state level.
